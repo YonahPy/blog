@@ -1,6 +1,9 @@
 
 Funcionalidades Essenciais (Cores):
 
+django-ckeditor
+pillow
+
 1-Gestão de Conteúdo (Posts):
 
     Criação, edição e exclusão de postagens.
