@@ -1,0 +1,82 @@
+
+Funcionalidades Essenciais (Cores):
+
+1-Gestão de Conteúdo (Posts):
+
+    Criação, edição e exclusão de postagens.
+
+    Listagem de postagens na página inicial.
+
+    Exibição de postagens individuais.
+
+    Classificação por data de publicação.
+
+    Paginação para postagens.
+
+2-Comentários:
+
+    Permitir que os leitores comentem nas postagens.
+
+    Moderação de comentários (aprovação ou exclusão).
+
+    Anexar comentários às postagens.
+
+3-Usuários e Autenticação:
+
+    Registro de usuários.
+    Login e logout de usuários.
+    Permissões de publicação (se necessário).
+
+
+4-Modelo de Dados:
+
+    Banco de dados para armazenar postagens, comentários e informações do usuário.
+
+    Migrações para criar e atualizar o esquema do banco de dados.
+
+    Templates e Estilo:
+
+
+
+Funcionalidades Opcionais (Não Obrigatórias):
+
+5- Categorias e Tags:
+
+    Organização de postagens em categorias ou tags.
+
+    Listagem de postagens por categoria ou tag.
+
+6-Pesquisa:
+
+    Funcionalidade de pesquisa para encontrar postagens com base em palavras-chave.
+
+7-Markdown ou Editor de Texto Rico:
+
+    Suporte a formatação de texto enriquecido para postagens.
+
+8-Imagens e Anexos:
+
+    Capacidade de anexar imagens e arquivos às postagens.
+
+
+9-Notificações e E-mails:
+
+    Envio de notificações por e-mail para novos comentários ou postagens.
+
+10-Galeria de Mídia:
+
+    Criação de uma galeria de mídia para imagens e vídeos.
+
+11-Integração de Redes Sociais:
+
+    Compartilhamento de postagens em redes sociais.
+
+12-Controle de Acesso e Permissões Avançadas:
+
+    Permissões personalizadas para autores, moderadores, administradores, etc.
+
+13-Análises e Estatísticas:
+
+    Acompanhamento de métricas de tráfego, visualizações de postagens, etc.
+
+
