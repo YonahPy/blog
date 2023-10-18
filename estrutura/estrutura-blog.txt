@@ -83,3 +83,27 @@ Funcionalidades Opcionais (Não Obrigatórias):
     Acompanhamento de métricas de tráfego, visualizações de postagens, etc.
 
 
+
+MODEL POST:
+
+Título: O título do post.
+
+Conteúdo: O texto principal do post.
+
+Autor: O autor do post. Pode estar relacionado ao modelo de usuário do Django.
+
+Data de Publicação: A data em que o post foi publicado.
+
+Categoria: A categoria à qual o post pertence. Isso permite organizar os posts em diferentes seções ou temas.
+
+Tags: Tags ou palavras-chave associadas ao post para facilitar a pesquisa e a categorização.
+
+Imagem de Destaque: Uma imagem representativa do post.
+
+Slug: Uma versão amigável para URL do título do post.
+
+Comentários: Uma relação de um-para-muitos com o modelo de comentários para permitir que os leitores façam comentários no post.
+
+Visualizações: Para rastrear o número de visualizações do post.
+
+Estado do Post: Pode ser "Rascunho", "Publicado" ou outros estados que você desejar.
