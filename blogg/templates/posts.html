@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-
+    {% load static %}
+    {% load humanize %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
@@ -28,7 +29,41 @@
     </header>
 
     <main>
-        
+        <section class="posts">
+
+            {% for post in posts %}
+            <div class="post">
+                    <div class="imagem-post">
+                        <img src="{{post.imagem_resumo.url}}" alt="{{post.slug}}">
+                    </div>
+
+                    <div class="post-info">
+                        <div>
+                            <div class="resumo-post">
+                                <a href="#">
+                                    <h2>{{post.titulo}}</h2>
+                                </a>
+                                {{post.resumo | safe}}
+                            </div>
+                            <div class="info-post">
+                                <div>
+                                    <img src="{% static "assets/icons8-usuário-32.png" %}" alt="icons8-usuário-32">
+                                    
+                                    <p>{{post.autor}}</p>
+                                </div>
+                                <div>
+                                    <img src="{% static "assets/icons8-relógio-50.png" %}" alt="icons8-relógio-50"> 
+
+                                    <p> {{ post.data|naturaltime }} </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+            </div>
+            {% endfor %}
+        </section>
     </main>
 </body>
 </html>
