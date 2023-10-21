@@ -2,7 +2,8 @@
 <html lang="pt-br">
 <head>
     {% load static %}
-    {% load humanize %}
+    {% load custom_filters %}
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
@@ -32,6 +33,23 @@
         <section class="posts">
 
             {% for post in posts %}
+
+
+            <dialog data-post-id="{{post.id}}">
+                <section class="conteudo">
+                    <div class="autor">
+                        <button class="fechar">
+                            <img src="{% static "assets/icons8-excluir.svg" %}" alt="icons8-excluir">
+                        </button>
+                        <p>Postado por: <strong>{{post.autor}} </strong></p>
+                    </div>
+                    <div class="conteudo-post">
+                        {{post.conteudo | safe}}
+                    </div>
+                </section>
+            </dialog>
+
+
             <div class="post">
                     <div class="imagem-post">
                         <img src="{{post.imagem_resumo.url}}" alt="{{post.slug}}">
@@ -40,9 +58,9 @@
                     <div class="post-info">
                         <div>
                             <div class="resumo-post">
-                                <a href="{% url "post" post.slug %}">
-                                    <h2>{{post.titulo}}</h2>
-                                </a>
+                                
+                                <h2 class="post-titulo" id="titulo{{post.id}}">{{post.titulo}}</h2>  
+                                
                                 {{post.resumo | safe}}
                             </div>
                             <div class="info-post">
@@ -54,7 +72,7 @@
                                 <div>
                                     <img src="{% static "assets/icons8-relógio-50.png" %}" alt="icons8-relógio-50"> 
 
-                                    <p> {{ post.data|naturaltime }} </p>
+                                    <p> {{ post.data|custom_timesince }} </p>
                                 </div>
                             </div>
                         </div>
@@ -65,5 +83,7 @@
             {% endfor %}
         </section>
     </main>
+
+    <script src="{% static "js/script.js" %}"></script>
 </body>
 </html>
