@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'tommy';
+    src: url('../fonts/MADE\ TOMMY\ Medium_PERSONAL\ USE.otf');
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'tommy';
+}
+.conteudo{
+    padding: 0 5vw 5vw 5vw;
+    margin: 0 auto;
+    background-color: rgb(114, 56, 114);
+}
+p, h2{
+    color: white;
+}
+p{
+    font-size: 16px;
+
+}
+h2{
+    font-size: 24px;
+
+}
+.autor strong{
+    color: steelblue;
+}
+.autor{
+    margin-bottom: 4vw;
+}
+.controles{
+    background-color: rgb(129, 65, 129);
+    height: 50px;
+    margin-bottom:4vw ;
+}
+
+.fechar img{
+    width: 35px;
+    height: 100%;
+    
+}

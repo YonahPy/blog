@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <link rel="stylesheet" href="{% static "css/conteudo.css" %}">
+</head>
+<body>
+    {% for post in posts %}
+    <section class="conteudo">
+        <div class="controles">
+            <a href="{% url "home" %}" class="fechar">
+                <img src="{% static "assets/icons8-excluir.svg" %}" alt="icons8-excluir">
+            </a>
+        </div>
+        <div class="autor">
+            <p>Postado por: <strong>{{post.autor}} </strong></p>
+        </div>
+        <div class="conteudo-post">
+            {{post.conteudo | safe}}
+        </div>
+    </section>
+    {% endfor %}
+</body>
+</html>

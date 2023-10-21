@@ -40,7 +40,7 @@
                     <div class="post-info">
                         <div>
                             <div class="resumo-post">
-                                <a href="#">
+                                <a href="{% url "post" post.slug %}">
                                     <h2>{{post.titulo}}</h2>
                                 </a>
                                 {{post.resumo | safe}}

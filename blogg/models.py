@@ -7,6 +7,6 @@ class Post(models.Model):
     conteudo = CKEditor5Field('conteudo', config_name='extends')
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     data = models.DateTimeField('data', auto_now_add=True)
-    slug = models.SlugField('slug')
+    slug = models.SlugField('slug', unique=True)
     resumo = CKEditor5Field('resumo', config_name='extends')
     imagem_resumo = models.ImageField('imagem_resumo', upload_to='imagens/' )

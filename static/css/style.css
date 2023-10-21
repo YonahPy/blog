@@ -1,16 +1,24 @@
+
+@font-face {
+    font-family: 'tommy';
+    src: url('../fonts/MADE\ TOMMY\ Medium_PERSONAL\ USE.otf');
+}
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     list-style: none;
     text-decoration: none;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'tommy';
 }
+
 p{
-    font-size: 17px;
+    font-size: 16px;
+
 }
 h2{
-    font-size: 28px;
+    font-size: 24px;
+
 }
 
 nav{
@@ -33,7 +41,7 @@ nav{
 }
 #subscribe{
     height: 50px;
-    border: 1px solid rgba(0, 0, 0, 0.233);
+    border: none;
     width: 300px;
     padding-left: 10px;
     background-color: rgb(99, 50, 99);
@@ -42,6 +50,7 @@ nav{
 #subscribe::placeholder{
     color: white;
     font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 #subscribe:focus{
     outline: none;
@@ -67,7 +76,7 @@ main{
     background-color: rgb(70, 35, 70);
     padding-top: 5vw;
     width: 100vw;
-    
+    padding-bottom: 5vw;
 }
 .posts{
     display: grid;
@@ -75,6 +84,7 @@ main{
     gap: 15px;
     margin: 0 auto;
     width: 80vw;
+    align-items: stretch;
 }
 .imagem-post img{
     width: 100%;
@@ -82,12 +92,16 @@ main{
 }
 .post{
     background-color: rgb(114, 56, 114);
+    min-height: 100%;
 }
 .post-info{
     padding: 25px;
+    display: flex;
+    flex-direction: column;
 }
 .info-post{
     display: flex;
+    align-items: center;
 }
 .info-post p{
     margin-right: 20px;
