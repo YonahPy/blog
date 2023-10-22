@@ -11,26 +11,39 @@
     text-decoration: none;
     font-family: 'tommy';
 }
-
+:root{
+    --theme-background-primary: #0e1217;
+    --theme-background-secondary: #1c1f26;
+    --theme-background-tertiary: #17191f;
+    --theme-background-pepper: #494e5b;
+    --theme-background-pepper-40: #383c47;
+    --theme-label-invert: #0e1217;
+    --theme-color-pepper: #383c47;
+    --green: #39e58c;
+    --red:#e04337;
+}
 p{
     font-size: 16px;
 
 }
 h2{
     font-size: 24px;
+    cursor: pointer;
 
 }
 
 nav{
     display: flex;
-    background-color: rgb(129, 65, 129);
+    background-color: var(--theme-background-primary);
     justify-content: space-between;
     align-items: center;
 }
+
 .logo-nav{
     display: flex;
     font-size: 19px;
     margin-left: 20px;
+    color: var(--green);
     margin-top: 5px;
 
 }
@@ -44,7 +57,8 @@ nav{
     border: none;
     width: 300px;
     padding-left: 10px;
-    background-color: rgb(99, 50, 99);
+    background-color: var(--theme-background-pepper);
+    border: none;
     
 }
 #subscribe::placeholder{
@@ -54,17 +68,22 @@ nav{
 }
 #subscribe:focus{
     outline: none;
-    border: 1px solid violet;
+    border: 1px solid var(--green);
 }
 #submit{
     border: none;
-    background-color: violet;
+    background-color: var(--theme-background-tertiary);
     height: 50px;
     width: 60px;
 }
 #submit:hover{
-    background-color: rgb(155, 88, 155);
+    background-color: rgb(10, 43, 26);
 }
+
+.material-symbols-outlined {
+  color: var(--green);
+}
+
 form{
     display: flex;
 }
@@ -73,7 +92,8 @@ form{
     
 }
 main{
-    background-color: rgb(70, 35, 70);
+    background-color: var(--theme-background-primary);
+
     padding-top: 5vw;
     width: 100vw;
     padding-bottom: 5vw;
@@ -91,7 +111,7 @@ main{
     height: 192px;
 }
 .post{
-    background-color: rgb(114, 56, 114);
+    background-color: var(--theme-background-secondary);
     min-height: 100%;
 }
 .post-info{
@@ -138,35 +158,42 @@ dialog{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
     padding: 20px;
-    border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: rgb(129, 65, 129);
+    background-color: var(--theme-background-primary);
     overflow-y: auto;
     max-height: 100%;
     border: none;
+    width: 70vw;
 }
 
 .autor strong{
-    color: steelblue;
+    color: var(--red);
 }
 .autor{
     margin-bottom: 4vw;
     display: flex;
     align-items: center;
+    color: white;
 }
 
 .fechar{
     border: none;
     background-color: transparent;
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     margin-right: 10px;
     cursor: pointer;
+    border-radius: 10px;
+}
+.fechar:hover{
+    background-color: var(--theme-background-pepper);
+    
+  
 }
 .fechar img{
-    width: 100%;
-    height: 100%;
+    width: 70%;
+    height: 70%;
     
 }
+7951e8f8b88f4516a534e3d4e80cf124
