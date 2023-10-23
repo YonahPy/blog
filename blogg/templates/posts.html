@@ -33,20 +33,18 @@
 
     <main>
         <section class="posts">
-
-            {% for post in posts %}
-
-
-            <dialog data-post-id="{{post.id}}">
+            {% for article in data.articles %}
+            
+            <dialog data-post-id="{{article.source.id}}">
                 <section class="conteudo">
                     <div class="autor">
                         <button class="fechar">
                             <img src="{% static "assets/icons8-excluir.svg" %}" alt="icons8-excluir">
                         </button>
-                        <p>Postado por: <strong>{{post.autor}} </strong></p>
+                        <p>Postado por: <strong>{{article.author}} </strong></p>
                     </div>
                     <div class="conteudo-post">
-                        {{post.conteudo | safe}}
+                        {{article.content | safe}}
                     </div>
                 </section>
             </dialog>
@@ -54,27 +52,27 @@
 
             <div class="post">
                     <div class="imagem-post">
-                        <img src="{{post.imagem_resumo.url}}" alt="{{post.slug}}">
+                        <img src="{{article.urlToImage}}" alt="{{article.source.name}}">
                     </div>
 
                     <div class="post-info">
                         <div>
                             <div class="resumo-post">
                                 
-                                <h2 class="post-titulo" id="titulo{{post.id}}">{{post.titulo}}</h2>  
+                                <h2 class="post-titulo" id="titulo{{article.source.id}}">{{article.title}}</h2>  
                                 
-                                {{post.resumo | safe}}
+                                {{article.description}}
                             </div>
                             <div class="info-post">
                                 <div>
                                     <img src="{% static "assets/icons8-usuário-32.png" %}" alt="icons8-usuário-32">
                                     
-                                    <p>{{post.autor}}</p>
+                                    <p>{{article.author}}</p>
                                 </div>
                                 <div>
                                     <img src="{% static "assets/icons8-relógio-50.png" %}" alt="icons8-relógio-50"> 
 
-                                    <p> {{ post.data|custom_timesince }} </p>
+                                    <p> {{ article.publishedAt}} </p>
                                 </div>
                             </div>
                         </div>
