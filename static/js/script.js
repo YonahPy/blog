@@ -1,12 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const postTitle = document.querySelectorAll('[id^="titulo"]');
+    const postTitle = document.querySelectorAll('.post-titulo');
 
 
     postTitle.forEach(function (title) {
         title.addEventListener("click", function () {
-            const postId = this.id.replace("titulo", "");
-            const modal = document.querySelector('dialog[data-post-id="' + postId + '"]');
-            modal.style.display = 'block';
+            const modal = title.nextElementSibling;
+            if (modal.style.display === 'block'){
+              modal.style.display = 'none';
+            } else{
+              modal.style.display = 'block'
+            }
+            
             
         });
     });
