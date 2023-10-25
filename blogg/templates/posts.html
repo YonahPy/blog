@@ -32,12 +32,9 @@
     
 
     <main>
-        <div>
-            {{data}}
-        </div>
+        
         <section class="posts">
-            {% for article in data.articles %}
-            
+            {% for article in page %}
             
             <div class="post">
                     <div class="imagem-post">
@@ -88,6 +85,21 @@
             </div>
             {% endfor %}
         </section>
+        <div class="pagination">
+            <span class="page-number">
+                Página {{ page_number }} de {{ total_pages}}
+            </span>
+            {% if page_number > 1 %}
+                <a href="?page={{ page_number|add:-1 }}" class="prev">
+                    Anterior
+                </a>
+            {% endif %}
+            {% if page_number < total_pages %}
+                <a href="?page={{ page_number|add:+1 }}" class="next">
+                    Próxima
+                </a>
+            {% endif %}
+        </div>
     </main>
 
     <script src="{% static "js/script.js" %}"></script>

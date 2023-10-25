@@ -1,25 +1,33 @@
 from django.shortcuts import render
 from .models import Post
 from django.contrib.auth.models import User
-from django.http import HttpResponse
 import requests
 from django.conf import settings
 from slugify import slugify
 
+
 def home(request):
     if request.method == "GET":
-        data = fetch_news_data()
-        add_slugs_data(data['articles'])
-        print(data)
-        return render(request, 'posts.html', {'data':data})
+        data = fetch_news_data(request)
+        articles, page_number, page_size = data
+        if 'articles' in articles:
+            add_slugs_data(articles['articles'])
+            total_results = articles['totalResults']
+            total_pages = total_results // page_size
+        
+        
+        return render(request, 'posts.html', {'page':articles['articles'], 'page_number':page_number, 'page_size':page_size, 'total_pages':total_pages})
     
 
-def fetch_news_data(page=1, page_size=20):
+def fetch_news_data(request):
+    page = request.GET.get('page', 1)
+    page_size = 100
+    
     api_key = settings.NEWS_API_KEY
     url = ('https://newsapi.org/v2/everything?domains=br.ign.com,gamespot.com,kotaku.com,polygon.com,metacritic.com,rockpapershotgun.com,gameinformer.com&sortBy=popularity&'f'apiKey={api_key}&page={page}&pageSize={page_size}')
     response = requests.get(url)
     data = response.json()
-    return data
+    return (data, int(page), page_size)
 
 
 def generate_unique_slug(new_slug, count=0):
