@@ -87,14 +87,14 @@
         </section>
         <div class="pagination">
             <span class="page-number">
-                Página {{ page_number }} de {{ total_pages}}
+                Página {{ page_number }} de 3
             </span>
             {% if page_number > 1 %}
                 <a href="?page={{ page_number|add:-1 }}" class="prev">
                     Anterior
                 </a>
             {% endif %}
-            {% if page_number < total_pages %}
+            {% if page_number < 3 %}
                 <a href="?page={{ page_number|add:+1 }}" class="next">
                     Próxima
                 </a>

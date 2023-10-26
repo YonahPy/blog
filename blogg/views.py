@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from .models import Post
 from django.contrib.auth.models import User
-import requests
 from django.conf import settings
 from slugify import slugify
-
+from newsapi import NewsApiClient
 
 def home(request):
     if request.method == "GET":
@@ -12,22 +11,29 @@ def home(request):
         articles, page_number, page_size = data
         if 'articles' in articles:
             add_slugs_data(articles['articles'])
-            total_results = articles['totalResults']
-            total_pages = total_results // page_size
-        
-        
-        return render(request, 'posts.html', {'page':articles['articles'], 'page_number':page_number, 'page_size':page_size, 'total_pages':total_pages})
-    
+            
+        print(articles)
+        return render(request, 'posts.html', {'page':articles['articles'], 'page_number':page_number, 'page_size':page_size})
+         
 
-def fetch_news_data(request):
-    page = request.GET.get('page', 1)
-    page_size = 100
+def fetch_news_data(request, page_number=1, page_size=100):
+    current_page = request.GET.get('page', page_number)
     
-    api_key = settings.NEWS_API_KEY
-    url = ('https://newsapi.org/v2/everything?domains=br.ign.com,gamespot.com,kotaku.com,polygon.com,metacritic.com,rockpapershotgun.com,gameinformer.com&sortBy=popularity&'f'apiKey={api_key}&page={page}&pageSize={page_size}')
-    response = requests.get(url)
-    data = response.json()
-    return (data, int(page), page_size)
+    newsapi = NewsApiClient(api_key=settings.NEWS_API_KEY)
+    
+    all_articles = []
+    
+    for i in range(page_number, page_number + 3):
+        response = newsapi.get_everything(
+            domains='br.ign.com,gamespot.com,kotaku.com,polygon.com,metacritic.com,rockpapershotgun.com,gameinformer.com',
+            sort_by='popularity',
+            page_size=page_size,
+            page=i
+        )
+        articles = response['articles']
+        all_articles.extend(articles)
+    
+    return all_articles, int(current_page), page_size
 
 
 def generate_unique_slug(new_slug, count=0):
