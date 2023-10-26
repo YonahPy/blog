@@ -144,7 +144,23 @@ main{
     text-align: start;
 }
 
-
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-top: 5vh;
+}
+.pagination span{
+    color: white;
+}
+.pagination a{
+    color: var(--red);
+    margin-inline: 15px;
+}
+.pagination a:hover{
+    color: #b4362d;
+}
 
 dialog{
     display: none;

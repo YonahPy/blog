@@ -7,33 +7,30 @@ from newsapi import NewsApiClient
 
 def home(request):
     if request.method == "GET":
-        data = fetch_news_data(request)
-        articles, page_number, page_size = data
+        data = fetch_news_data_page(request)
+        articles, page_number= data
+        
         if 'articles' in articles:
             add_slugs_data(articles['articles'])
             
-        print(articles)
-        return render(request, 'posts.html', {'page':articles['articles'], 'page_number':page_number, 'page_size':page_size})
+            
+        return render(request, 'posts.html', {'page':articles['articles'], 'page_number':page_number})
          
 
-def fetch_news_data(request, page_number=1, page_size=100):
-    current_page = request.GET.get('page', page_number)
+def fetch_news_data_page(request):
+    current_page = request.GET.get('page', 1)
     
     newsapi = NewsApiClient(api_key=settings.NEWS_API_KEY)
     
-    all_articles = []
+    response = newsapi.get_everything(
+        domains='br.ign.com,gamespot.com,kotaku.com,metacritic.com,rockpapershotgun.com,polygon.com,gameinformer.com',
+        sort_by='popularity',
+        page_size=20,
+        page=int(current_page)
+    )
+    print(f'ola o numero da pagina é {current_page}')
     
-    for i in range(page_number, page_number + 3):
-        response = newsapi.get_everything(
-            domains='br.ign.com,gamespot.com,kotaku.com,polygon.com,metacritic.com,rockpapershotgun.com,gameinformer.com',
-            sort_by='popularity',
-            page_size=page_size,
-            page=i
-        )
-        articles = response['articles']
-        all_articles.extend(articles)
-    
-    return all_articles, int(current_page), page_size
+    return response, current_page
 
 
 def generate_unique_slug(new_slug, count=0):
