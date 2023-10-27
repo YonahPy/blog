@@ -21,8 +21,8 @@
                 <div class="name-blog">Jonas blog</div>
             </div>
 
-            <form action="#">
-                <input type="text" placeholder="Subscribe to the newsletter" name="subscribe" id="subscribe">
+            <form action="{% url "home" %}">
+                <input type="text" placeholder="Search" name="search" id="search">
                 <input type="submit" id="submit" value="done" class="material-symbols-outlined">
                
             </form>
@@ -85,23 +85,28 @@
             </div>
             {% endfor %}
         </section>
+        
+        {% if total_results  %}
         <div class="pagination">
-            {% if page_number > '1'%}
-                <a href="?page={{ page_number|add:-1 }}" class="prev">
+            {% if page_number != 1 %}
+                <a href="?page={{ page_number|add:-1 }} {% if search_query %}&search={{search_query}}{% endif %}" class="prev">
                     Anterior
                 </a>
             {% endif %}
             
             <span class="page-number">
-                Página {{ page_number }} de 5
+                Página {{ page_number }} de {{total_results}}
             </span>
             
-            {% if page_number < '5' %}
-                <a href="?page={{ page_number|add:+1 }}" class="next">
+            {% if page_number == '5' %}
+                <span></span>
+            {% else %}
+                <a href="?page={{ page_number|add:1 }} {% if search_query %}&search={{search_query}}{% endif %}" class="next">
                     Próxima
                 </a>
             {% endif %}
         </div>
+        {% endif %}
     </main>
 
     <script src="{% static "js/script.js" %}"></script>

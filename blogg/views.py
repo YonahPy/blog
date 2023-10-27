@@ -7,30 +7,47 @@ from newsapi import NewsApiClient
 
 def home(request):
     if request.method == "GET":
-        data = fetch_news_data_page(request)
-        articles, page_number= data
+        search = request.GET.get('search')
+        page_number = int(request.GET.get('page', 1))
+        
+        data = fetch_news_data_page(search, page_number)
+        
+        articles = data
         
         if 'articles' in articles:
             add_slugs_data(articles['articles'])
+        
+        if articles['totalResults'] > 20:
+            total_pages = articles['totalResults'] // 20
+            if total_pages > 5:
+                total_pages = 5
+        else:
+            total_pages = False
             
-            
-        return render(request, 'posts.html', {'page':articles['articles'], 'page_number':page_number})
-         
+        return render(request, 'posts.html', {'page':articles['articles'], 'page_number':page_number, 'total_results':total_pages, 'search_query':search})
+    
+    
 
-def fetch_news_data_page(request):
-    current_page = request.GET.get('page', 1)
+def fetch_news_data_page(query='', page_number=1):
+    
     
     newsapi = NewsApiClient(api_key=settings.NEWS_API_KEY)
-    
-    response = newsapi.get_everything(
-        domains='br.ign.com,gamespot.com,kotaku.com,metacritic.com,rockpapershotgun.com,polygon.com,gameinformer.com',
-        sort_by='popularity',
-        page_size=20,
-        page=int(current_page)
-    )
-    print(f'ola o numero da pagina é {current_page}')
-    
-    return response, current_page
+    if query:
+        response = newsapi.get_everything(
+            q=query,
+            domains='br.ign.com,gamespot.com,kotaku.com,metacritic.com,rockpapershotgun.com,polygon.com,gameinformer.com',
+            sort_by='relevancy',
+            page_size=20,
+            page=page_number
+        )
+    else:
+        response = newsapi.get_everything(
+            domains='br.ign.com,gamespot.com,kotaku.com,metacritic.com,rockpapershotgun.com,polygon.com,gameinformer.com',
+            sort_by='popularity',
+            page_size=20,
+            page=page_number
+        )
+    return response
 
 
 def generate_unique_slug(new_slug, count=0):

@@ -52,21 +52,21 @@ nav{
     margin-right: 10px;
 
 }
-#subscribe{
+#search{
     height: 50px;
     border: none;
     width: 300px;
     padding-left: 10px;
     background-color: var(--theme-background-pepper);
     border: none;
-    
+    color: white;
 }
-#subscribe::placeholder{
+#search::placeholder{
     color: white;
     font-size: 15px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-#subscribe:focus{
+#search:focus{
     outline: none;
     border: 1px solid var(--green);
 }
