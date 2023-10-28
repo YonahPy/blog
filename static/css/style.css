@@ -50,7 +50,7 @@ nav{
 .logo-nav div{
     margin-left: 10px;
     margin-right: 10px;
-
+    color: var(--green);
 }
 #search{
     height: 50px;
@@ -171,6 +171,7 @@ dialog{
     height: 100%;
     background-color: rgba(0, 0, 0, 0.829);
     overflow: hidden;
+    color: white;
 }
 .conteudo {
     position: absolute;
@@ -179,12 +180,56 @@ dialog{
     transform: translate(-50%, -50%);
     padding: 20px;
     border-radius: 5px;
-    background-color: var(--theme-background-primary);
+    background-color: var(--theme-background-tertiary);
     overflow-y: auto;
     max-height: 100%;
     border: none;
     width: 70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.title-modal{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.title-modal h2{
+    margin-top: 15px;
+    max-width: 550px;
+}
+.primeira-coluna{
+    width: 80%;
+}
+
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.read-post{
+    color: white;
+    padding: 10px;
+    background-color: var(--theme-background-secondary);
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.read-post:hover{
+    background-color: #22242b;
+}
+
+.imagem-modal{
+    width: 80%;
+    margin-bottom: 20px;
+}
+.imagem-modal img{
+    width: 100%;
+    border-radius: 10px;
+}
+
 
 .autor strong{
     color: var(--red);
@@ -194,6 +239,9 @@ dialog{
     display: flex;
     align-items: center;
     color: white;
+}
+.autor p{
+    margin-right: 10px;
 }
 
 .fechar{

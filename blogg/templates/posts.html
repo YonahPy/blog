@@ -18,7 +18,9 @@
                     <img src="{% static "assets/game-control.png" %}" alt="game-control">
                 </div>
                 |
-                <div class="name-blog">Jonas blog</div>
+                <a href="{% url "home" %}">
+                    <div class="name-blog">Jonas blog</div>
+                </a>
             </div>
 
             <form action="{% url "home" %}">
@@ -45,22 +47,42 @@
                         <div>
                             <div class="resumo-post">
                                 
-                                <a href="#">
-                                    <h2 class="post-titulo" >{{article.title}}</h2>
-                                </a>  
+                                
+                                <h2 class="post-titulo" >{{article.title}}</h2>
+                                
 
                                 <dialog>
+                                    
                                     <section class="conteudo">
-                                        <div class="autor">
-                                            <button class="fechar">
-                                                <img src="{% static "assets/icons8-excluir.svg" %}" alt="icons8-excluir">
-                                            </button>
-                                            <p>Postado por: <strong>{{article.author}} </strong></p>
+                                        <div class="primeira-coluna">
+                                            <div class="title-modal">
+                                                <h2>{{article.title}}</h2>
+                                                <div class="buttons">
+                                                    <a href="{{article.url}}" target="_blank" class="read-post">Read Post</a>
+    
+                                                    <button class="fechar">
+                                                        <img src="{% static "assets/icons8-excluir.svg" %}" alt="icons8-excluir">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="autor">
+                                                <p>Postado por: <strong>{{article.author}} </strong>|</p>
+                                                
+                                                <p>Data da postagem: <strong>{{article.publishedAt |format_date}}</strong></p>
+                                            </div>
+                                            <div class="conteudo-post">
+                                                <p>{{ article.content |slice:":200" }}</p>
+                                                <div class="imagem-modal">
+                                                    <img src="{{article.urlToImage}}" alt="{{article.name}}"></img>
+                                                </div>
+                                                
+                                            </div>
+                                            
                                         </div>
-                                        <div class="conteudo-post">
-                                            {{article.content }}
-                                        </div>
+                                        
+                                        
                                     </section>
+                                    
                                 </dialog>
                                 
                                 {{article.description}}
@@ -98,7 +120,7 @@
                 Página {{ page_number }} de {{total_results}}
             </span>
             
-            {% if page_number == '5' %}
+            {% if page_number == total_results %}
                 <span></span>
             {% else %}
                 <a href="?page={{ page_number|add:1 }} {% if search_query %}&search={{search_query}}{% endif %}" class="next">

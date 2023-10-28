@@ -5,6 +5,7 @@ from django.conf import settings
 from slugify import slugify
 from newsapi import NewsApiClient
 
+
 def home(request):
     if request.method == "GET":
         search = request.GET.get('search')
@@ -19,11 +20,18 @@ def home(request):
         
         if articles['totalResults'] > 20:
             total_pages = articles['totalResults'] // 20
+            more_results = articles['totalResults'] - (total_pages * 20)
+            
             if total_pages > 5:
                 total_pages = 5
+                
+            if more_results > 0 and total_pages < 5:
+                total_pages += 1
         else:
             total_pages = False
-            
+        
+        
+        
         return render(request, 'posts.html', {'page':articles['articles'], 'page_number':page_number, 'total_results':total_pages, 'search_query':search})
     
     

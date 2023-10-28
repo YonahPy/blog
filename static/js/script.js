@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     postTitle.forEach(function (title) {
         title.addEventListener("click", function () {
+            
             const modal = title.nextElementSibling;
             if (modal.style.display === 'block'){
               modal.style.display = 'none';
